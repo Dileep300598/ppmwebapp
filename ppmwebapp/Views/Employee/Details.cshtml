@@ -1,0 +1,39 @@
+﻿@model ppmwebapp.model.Employee
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.RoleId)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+    </dl>
+    <div>
+        
+        <a class="btn btn-danger" asp-action="Index">Back</a>
+    </div>
+</div>

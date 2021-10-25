@@ -1,0 +1,47 @@
+﻿@model ppmwebapp.model.Employee
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Would you like to continue?</h3>
+<div >
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.RoleId)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input class="btn btn-primary" type="submit" value="Yes" />
+        <a class="btn btn-danger" asp-action="Index">No</a>
+    </form>
+
+</div>

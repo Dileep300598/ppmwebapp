@@ -82,8 +82,8 @@ namespace ppmwebapp.Controllers
         // GET: RoleController/Delete/5
         public ActionResult Delete(int id)
         {
-            var role1 = roleRepository.Delete(id);
-            return View(role1);
+            var role2 = roleRepository.Get(id);
+            return View(role2);
 
         }
 
@@ -92,8 +92,10 @@ namespace ppmwebapp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Role role)
         {
+            int id = role.Id;
             try
             {
+                 roleRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

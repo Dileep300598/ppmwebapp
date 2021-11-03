@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ppmwebapp.model;
+using ppmwebapp.Models;
 using ppmwebapp.repo.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -47,7 +47,7 @@ namespace ppmwebapp.Controllers
         {
             try
             {
-               Project project = projectRepository.Create(pro);
+                projectRepository.Create(pro);
                return RedirectToAction(nameof(Index));
             }
             catch
@@ -82,9 +82,8 @@ namespace ppmwebapp.Controllers
         // GET: ProjectController/Delete/5
         public ActionResult Delete(int id)
         {
-            var pro = projectRepository.Delete(id);
-
-            return View(pro);
+            var pro2 = projectRepository.Get(id);
+            return View(pro2);
         }
 
         // POST: ProjectController/Delete/5
@@ -92,9 +91,10 @@ namespace ppmwebapp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Project pro)
         {
+            int id = pro.id;
             try
             {
-                
+                projectRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

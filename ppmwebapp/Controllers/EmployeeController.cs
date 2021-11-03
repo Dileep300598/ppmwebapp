@@ -1,7 +1,10 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 using ppmwebapp.model;
+using ppmwebapp.repo.Concrete;
 using ppmwebapp.repo.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,13 +15,15 @@ namespace ppmwebapp.Controllers
 {
     public class EmployeeController : Controller
     {
-
         private readonly IEmployeeRepository _employeeRepository;
-        public EmployeeController(IEmployeeRepository employeeRepository)
-        {
-            _employeeRepository = employeeRepository;
-        }
+        private readonly IConfiguration Configuration;
 
+        public EmployeeController(IEmployeeRepository employeeRepo, IConfiguration configuration)
+        {
+            _employeeRepository = employeeRepo;
+            Configuration = configuration;
+
+        }
         // GET: EmployeeController
         public ActionResult Index()
         {
@@ -37,7 +42,11 @@ namespace ppmwebapp.Controllers
         // GET: EmployeeController/Create
         public ActionResult Create()
         {
-            return View();
+            IEnumerable<Role> roles;
+            RoleRepository roleRepository = new RoleRepository(Configuration);
+            roles = roleRepository.GetAll();
+            ViewData["roles"] = new SelectList(roles, "Id", "RoleName");
+            return View("Create");
         }
 
         // POST: EmployeeController/Create
@@ -60,9 +69,13 @@ namespace ppmwebapp.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            var emp1 = _employeeRepository.Get(id);
+            IEnumerable<Role> roles;
+            RoleRepository roleRepository = new RoleRepository(Configuration);
+            roles = roleRepository.GetAll();
+            ViewData["roles"] = new SelectList(roles, "Id", "RoleName");
+            var emp = _employeeRepository.Get(id);
 
-            return View(emp1);
+            return View(emp);
         }
 
         // POST: EmployeeController/Edit/5
@@ -84,8 +97,8 @@ namespace ppmwebapp.Controllers
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
-            var emp = _employeeRepository.Delete(id);
-            return View(emp);
+            var empl = _employeeRepository.Get(id);
+            return View(empl);
         }
 
         // POST: EmployeeController/Delete/5
@@ -93,8 +106,10 @@ namespace ppmwebapp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Employee emp)
         {
+            int id = emp.Id;
             try
             {
+                _employeeRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -45,7 +45,7 @@ namespace ppmwebapp.Controllers
             IEnumerable<Role> roles;
             RoleRepository roleRepository = new RoleRepository(Configuration);
             roles = roleRepository.GetAll();
-            ViewData["roles"] = new SelectList(roles, "Id", "RoleName");
+            ViewData["roles"] = new SelectList(roles,  "RoleName","RoleName");
             return View("Create");
         }
 
@@ -59,10 +59,10 @@ namespace ppmwebapp.Controllers
                 _employeeRepository.Create(emp);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
 
-                return View();
+                return View(e);
             }
         }
 
@@ -72,7 +72,7 @@ namespace ppmwebapp.Controllers
             IEnumerable<Role> roles;
             RoleRepository roleRepository = new RoleRepository(Configuration);
             roles = roleRepository.GetAll();
-            ViewData["roles"] = new SelectList(roles, "Id", "RoleName");
+            ViewData["roles"] = new SelectList(roles, "RoleName", "RoleName");
             var emp = _employeeRepository.Get(id);
 
             return View(emp);
@@ -88,9 +88,9 @@ namespace ppmwebapp.Controllers
                  _employeeRepository.Edit(employee);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                return View(e);
             }
         }
 

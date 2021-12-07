@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ppmwebapp.model.EmployeeToProject>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h1>Index</h1>
+
+    <p>
+        <a class="btn btn-outline-primary" asp-action="Create">Create New</a>
+    </p>
+   
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProjectId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeName)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Details", "Details", new { id = item.ProjectId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+ 

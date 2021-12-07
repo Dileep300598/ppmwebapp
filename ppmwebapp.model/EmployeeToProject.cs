@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace ppmwebapp.model
 {
-    public class Role
+    public class EmployeeToProject
     {
         [Key]
-        public int Id { get; set; }
-        [Required(ErrorMessage = "Please Enter RoleName")]
-        public string RoleName { get; set; }
+        public int ProjectId { get; set; }
+
+        public string EmployeeName { get; set; }
+       
     }
 }

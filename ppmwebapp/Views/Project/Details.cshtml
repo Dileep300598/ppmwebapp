@@ -33,7 +33,8 @@
         </dd>
     </dl>
     <div>
-
-        <a class="btn btn-danger" asp-action="Index">Back</a>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Employees", "List", new { id = Model.id }) |
+        <a asp-action="Index">Back to List</a>
     </div>
 </div>

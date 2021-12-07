@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ppmwebapp.repo.Concrete
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository 
     {
         private readonly IConfiguration Configuration;
         public EmployeeRepository(IConfiguration _configuration)
@@ -34,7 +34,7 @@ namespace ppmwebapp.repo.Concrete
                 cmd.Parameters.AddWithValue("@FirstName", model.Firstname);
                 cmd.Parameters.AddWithValue("@LastName", model.Lastname);
                 cmd.Parameters.AddWithValue("@Contact", model.Contact);
-                cmd.Parameters.AddWithValue("@RoleId", model.RoleId);
+                cmd.Parameters.AddWithValue("@Role", model.Role);
                 cmd.ExecuteNonQuery();
             }
             return model;
@@ -80,7 +80,7 @@ namespace ppmwebapp.repo.Concrete
                         obj.Firstname = Convert.ToString(dataSet.Tables[0].Rows[i]["FirstName"]);
                         obj.Lastname = Convert.ToString(dataSet.Tables[0].Rows[i]["LastName"]);
                         obj.Contact = Convert.ToInt64(dataSet.Tables[0].Rows[i]["Contact"]);
-                        obj.RoleId = Convert.ToInt32(dataSet.Tables[0].Rows[i]["RoleId"]);
+                        obj.Role = Convert.ToString(dataSet.Tables[0].Rows[i]["Role"]);
                         getEmpList.Add(obj);
 
                     }
@@ -112,7 +112,7 @@ namespace ppmwebapp.repo.Concrete
                     model.Firstname = Convert.ToString(dataSet.Tables[0].Rows[0]["FirstName"]);
                     model.Lastname = Convert.ToString(dataSet.Tables[0].Rows[0]["LastName"]);
                     model.Contact = Convert.ToInt64(dataSet.Tables[0].Rows[0]["Contact"]);
-                    model.RoleId = Convert.ToInt32(dataSet.Tables[0].Rows[0]["RoleId"]);
+                    model.Role = Convert.ToString(dataSet.Tables[0].Rows[0]["Role"]);
                 }
             }
             return model;
@@ -133,7 +133,7 @@ namespace ppmwebapp.repo.Concrete
                 cmd.Parameters.AddWithValue("@FirstName", model.Firstname);
                 cmd.Parameters.AddWithValue("@LastName", model.Lastname);
                 cmd.Parameters.AddWithValue("@Contact", model.Contact);
-                cmd.Parameters.AddWithValue("@RoleId", model.RoleId);
+                cmd.Parameters.AddWithValue("@Role", model.Role);
                 cmd.ExecuteNonQuery();
             }
             return model;

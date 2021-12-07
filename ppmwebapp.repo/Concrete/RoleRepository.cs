@@ -20,24 +20,27 @@ namespace ppmwebapp.repo.Concrete
         }
         //public string connect = ConfigurationManager.ConnectionStrings["connection"].ConnectionString
 
-      // private SqlDataAdapter sqlDataAdapter
-       // private DataSet dataSet
+        // private SqlDataAdapter sqlDataAdapter
+        // private DataSet dataSet
 
         public Role Create(Role model)
         {
             string connect = Configuration.GetConnectionString("DBConnection");
             using (SqlConnection con = new SqlConnection(connect))
+
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("RoleDetails", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@mode", "CreateRole");
-                cmd.Parameters.AddWithValue("@Id", model.Id);
-                cmd.Parameters.AddWithValue("@RoleName", model.RoleName);
-                cmd.ExecuteNonQuery();
+                
+                    SqlCommand cmd = new SqlCommand("RoleDetails", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@mode", "CreateRole");
+                    cmd.Parameters.AddWithValue("@Id", model.Id);
+                    cmd.Parameters.AddWithValue("@RoleName", model.RoleName );
+                    cmd.ExecuteNonQuery();
             }
                 return model;
-        }
+         }
+        
 
         public Role Delete(int id)
         {
